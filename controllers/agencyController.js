@@ -26,9 +26,10 @@ class AgencyController {
       .then((agency) => {
         res.status(201).json(agency);
       })
-      .catch((err) => {
-        next(err);
-      });
+      // .catch((err) => {
+      //   console.log(err)
+      //   // next(err);
+      // });
   }
 
   static loginAgency(req, res, next) {
@@ -54,10 +55,10 @@ class AgencyController {
           });
         }
       })
-      .catch((err) => {
-        console.log(err);
-        next(err);
-      });
+      // .catch((err) => {
+      //   console.log(err);
+      //   // next(err);
+      // });
   }
 
   static getAllAgencies(req, res, next) {
@@ -76,9 +77,10 @@ class AgencyController {
       .then((agencies) => {
         res.status(200).json(agencies);
       })
-      .catch((err) => {
-        next(err);
-      });
+      // .catch((err) => {
+      //   console.log(err)
+      //   // next(err);
+      // });
   }
 
   static getAgencyById(req, res, next) {
@@ -91,9 +93,10 @@ class AgencyController {
           res.status(200).json(agency);
         }
       })
-      .catch((err) => {
-        next(err);
-      });
+      // .catch((err) => {
+      //   console.log(err)
+      //   // next(err);
+      // });
   }
 
   static updateDataAgency(req, res, next) {
@@ -130,13 +133,12 @@ class AgencyController {
       .then((resp) => {
         if (resp[0] === 1) {
           res.status(200).json({ message: "Successfully updated" });
-        } else {
-          next({ name: "ERR_NOT_FOUND" });
-        }
+        } 
       })
-      .catch((err) => {
-        next(err);
-      });
+      // .catch((err) => {
+      //   console.log(err)
+      //   // next(err);
+      // });
   }
 
   static deleteById(req, res, next) {
@@ -152,13 +154,12 @@ class AgencyController {
       .then((resp) => {
         if (resp === 1) {
           res.status(200).json({ message: "Successfully deleted" });
-        } else {
-          next(err);
         }
       })
-      .catch((err) => {
-        next(err);
-      });
+      // .catch((err) => {
+      //   console.log(err)
+      //   // next(err);
+      // });
   }
 }
 

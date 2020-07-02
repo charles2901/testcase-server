@@ -6,19 +6,19 @@ const {
 } = require("../middlewares/authentication");
 const { authorizationAgency } = require("../middlewares/authorization");
 
-router.post("/register", NannyController.registerNanny);
-router.get("/", NannyController.getAllNannies);
-router.get("/kanan/:id", NannyController.getAllNanniesToTheRight);
-router.get("/kiri/:id", NannyController.getAllNanniesToTheLeft);
+router.post("/register", NannyController.registerNanny); //done
+router.get("/", NannyController.getAllNannies); //done
+// router.get("/kanan/:id", NannyController.getAllNanniesToTheRight);
+// router.get("/kiri/:id", NannyController.getAllNanniesToTheLeft);
 router.get(
   "/showAssociateNanny",
   authenticationAgency,
   NannyController.findAllCorrespondingNanny
-);
+); //done
 router.get("/:id", NannyController.getNannyById);
 
 router.use(authenticationAgency);
-router.post("/", NannyController.addNanny);
+router.post("/", NannyController.addNanny); //done
 
 router.put("/:id", authorizationAgency, NannyController.updateDataNanny);
 router.delete("/:id", authorizationAgency, NannyController.deleteById);

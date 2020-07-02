@@ -10,9 +10,6 @@ class WishlistController {
       .then((wishlists) => {
         res.status(200).json(wishlists);
       })
-      .catch((err) => {
-        next(err);
-      });
   }
 
   static addToWishlist(req, res, next) {
@@ -20,15 +17,12 @@ class WishlistController {
     const id = req.params.nannyId;
     Nanny.findOne({ where: { id } })
       .then((nanny) => {
-        const nannyWishlist = { ...nanny.dataValues, ParentId };
+        const nannyWishlist = { ...nanny, ParentId };
         return NannyWishlist.create(nannyWishlist);
       })
       .then((wish) => {
         res.status(201).json(wish);
       })
-      .catch((err) => {
-        next(err);
-      });
   }
 
   static deleteWishlist(req, res, next) {
@@ -37,9 +31,6 @@ class WishlistController {
       .then(() => {
         res.status(200).json({ message: "Delete wishlist success" });
       })
-      .catch((err) => {
-        next(err);
-      });
   }
 }
 

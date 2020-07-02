@@ -8,8 +8,8 @@
   },
   "test": {
     "username": "postgres",
-    "password": "hacktiv",
-    "database": "super-nanny-db-test",
+    "password": "postgres",
+    "database": "FinalProject-3",
     "host": "localhost",
     "dialect": "postgres"
   },

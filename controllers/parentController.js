@@ -27,9 +27,6 @@ class ParentController {
       .then((parent) => {
         res.status(201).json(parent);
       })
-      .catch((err) => {
-        next(err);
-      });
   }
 
   static loginParent(req, res, next) {
@@ -41,8 +38,6 @@ class ParentController {
     })
       .then((parent) => {
         if (!parent || !compareSyncBcrypt(password, parent.password)) {
-          // console.log(password);
-          // console.log(parent.password);
           next({ name: "INVALID_EMAIL_PASSWORD" });
         } else {
           const token = jwtSign(parent);
@@ -62,9 +57,6 @@ class ParentController {
           });
         }
       })
-      .catch((err) => {
-        next(err);
-      });
   }
 
   static getAllParents(req, res, next) {
@@ -84,9 +76,6 @@ class ParentController {
       .then((parents) => {
         res.status(200).json(parents);
       })
-      .catch((err) => {
-        next(err);
-      });
   }
 
   static getParentById(req, res, next) {
@@ -99,9 +88,6 @@ class ParentController {
           res.status(200).json(parent);
         }
       })
-      .catch((err) => {
-        next(err);
-      });
   }
 
   static updateDataParent(req, res, next) {
@@ -140,13 +126,8 @@ class ParentController {
       .then((resp) => {
         if (resp[0] === 1) {
           res.status(200).json({ message: "Successfully updated" });
-        } else {
-          next(err);
         }
       })
-      .catch((err) => {
-        next(err);
-      });
   }
 
   static deleteById(req, res, next) {
@@ -155,25 +136,20 @@ class ParentController {
       .then((resp) => {
         if (resp === 1) {
           res.status(200).json({ message: "Successfully deleted" });
-        } else {
-          next(err);
         }
       })
-      .catch((err) => {
-        next(err);
-      });
   }
 
-  static getAllChildren(req, res, next) {
-    const { id } = req.parentData;
-    Child.findAll({ where: { ParentId: id } })
-      .then((children) => {
-        res.status(200).json(children);
-      })
-      .catch((err) => {
-        next(err);
-      });
-  }
+  // static getAllChildren(req, res, next) {
+  //   const { id } = req.parentData;
+  //   Child.findAll({ where: { ParentId: id } })
+  //     .then((children) => {
+  //       res.status(200).json(children);
+  //     })
+  //     .catch((err) => {
+  //       next(err);
+  //     });
+  // }
 }
 
 module.exports = ParentController;

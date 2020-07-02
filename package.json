@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "set NODE_ENV=test&& jest --detectOpenHandles --forceExit",
+    "test": "set NODE_ENV=test&& jest --detectOpenHandles --forceExit --coverage",
     "start": "budo app.js:bundle.js"
   },
   "keywords": [],
@@ -25,6 +25,7 @@
     "sequelize-cli": "^6.0.0",
     "simple-peer": "^9.7.2",
     "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
     "supertest": "^4.0.2",
     "wrtc": "^0.4.5"
   }
