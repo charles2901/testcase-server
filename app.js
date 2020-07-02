@@ -19,47 +19,47 @@ app.use(cors());
 app.use(routes);
 app.use(errorHandler);
 
-io.on("connection", (socket) => {
-  socket.on("sendMessage", (payload) => {
-    socket.broadcast.in(payload.roomKey).emit("sendMessage", payload);
-  });
-  socket.on("receive peerId", (payload) => {
-    console.log(payload, "ini peer id");
-    socket.broadcast.in(payload.roomKey).emit("receive peerId", payload);
-  });
-  socket.on("reject phone call", (payload) => {
-    socket.broadcast.in(payload.roomKey).emit("reject phone call", payload.msg);
-  });
-  socket.on("end call", (payload) => {
-    socket.broadcast.in(payload.roomKey).emit("end call", payload.msg);
-  });
-  socket.on("mute Video", (payload) => {
-    socket.broadcast.in(payload.roomKey).emit("mute Video");
-  });
-  socket.on("unMute Video", (payload) => {
-    socket.broadcast.in(payload.roomKey).emit("unMute Video");
-  });
-  socket.on("pause", (payload) => {
-    socket.broadcast.in(payload.roomKey).emit("pause");
-  });
-  socket.on("join-room", (roomKey) => {
-    console.log("Joining room ", roomKey);
-    socket.join(roomKey);
-  });
-  socket.on("leave-room", (roomKey) => {
-    console.log("Leaving room ", roomKey);
-    socket.leave(roomKey);
-  });
-  socket.on("settingRoomDashboardUnread", (payload) => {
-    socket.join(payload);
-  });
-  socket.on("disbandSettingRoomDashboardUnread", (payload) => {
-    socket.leave(payload);
-  });
-  socket.on("fetchingPartner", (payload) => {
-    socket.broadcast.in(payload.key).emit("fetchingClientMsg");
-  });
-});
+// io.on("connection", (socket) => {
+//   socket.on("sendMessage", (payload) => {
+//     socket.broadcast.in(payload.roomKey).emit("sendMessage", payload);
+//   });
+//   socket.on("receive peerId", (payload) => {
+//     console.log(payload, "ini peer id");
+//     socket.broadcast.in(payload.roomKey).emit("receive peerId", payload);
+//   });
+//   socket.on("reject phone call", (payload) => {
+//     socket.broadcast.in(payload.roomKey).emit("reject phone call", payload.msg);
+//   });
+//   socket.on("end call", (payload) => {
+//     socket.broadcast.in(payload.roomKey).emit("end call", payload.msg);
+//   });
+//   socket.on("mute Video", (payload) => {
+//     socket.broadcast.in(payload.roomKey).emit("mute Video");
+//   });
+//   socket.on("unMute Video", (payload) => {
+//     socket.broadcast.in(payload.roomKey).emit("unMute Video");
+//   });
+//   socket.on("pause", (payload) => {
+//     socket.broadcast.in(payload.roomKey).emit("pause");
+//   });
+//   socket.on("join-room", (roomKey) => {
+//     console.log("Joining room ", roomKey);
+//     socket.join(roomKey);
+//   });
+//   socket.on("leave-room", (roomKey) => {
+//     console.log("Leaving room ", roomKey);
+//     socket.leave(roomKey);
+//   });
+//   socket.on("settingRoomDashboardUnread", (payload) => {
+//     socket.join(payload);
+//   });
+//   socket.on("disbandSettingRoomDashboardUnread", (payload) => {
+//     socket.leave(payload);
+//   });
+//   socket.on("fetchingPartner", (payload) => {
+//     socket.broadcast.in(payload.key).emit("fetchingClientMsg");
+//   });
+// });
 
 if (process.env.NODE_ENV !== "test") {
   http.listen(PORT, () => {

@@ -58,6 +58,80 @@ describe("Child testing" , () => {
         })
     })
 
+    describe('no valid token', () => {
+        let form = {
+            name : 'Charles',
+            gender: 'male',
+            birthDate: new Date(),
+            condition: 'healthy'
+        }
+        it('Should return 200 and obj of child', (done) => {
+            request(app)
+            .post('/child')
+            .send(form)
+            .then(response => {
+                let { body, status } = response;
+                expect(status).toBe(403);
+                expect(body).toHaveProperty("error");
+                expect(body).toHaveProperty("errorMessages");
+                done()
+            })
+            .catch(err => {
+                done(err)
+            })
+        })
+    })
+
+    describe('auth failed with exist token', () => {
+        let form = {
+            name : 'Charles',
+            gender: 'male',
+            birthDate: new Date(),
+            condition: 'healthy'
+        }
+        it('Should return 200 and obj of child', (done) => {
+            request(app)
+            .post('/child')
+            .set('access_token', 'invalid_token')
+            .send(form)
+            .then(response => {
+                let { body, status } = response;
+                expect(status).toBe(403);
+                expect(body).toHaveProperty("error");
+                expect(body).toHaveProperty("errorMessages");
+                done()
+            })
+            .catch(err => {
+                done(err)
+            })
+        })
+    })
+
+    describe('fail sequelize validation', () => {
+        let form = {
+            name : null,
+            gender: 'male',
+            birthDate: new Date(),
+            condition: 'healthy'
+        }
+        it('Should return 200 and obj of child', (done) => {
+            request(app)
+            .post('/child')
+            .set('access_token', token)
+            .send(form)
+            .then(response => {
+                let { body, status } = response;
+                expect(status).toBe(400);
+                expect(body).toHaveProperty("error");
+                expect(body).toHaveProperty("errorMessages");
+                done()
+            })
+            .catch(err => {
+                done(err)
+            })
+        })
+    })
+
     
     describe('Add child', () => {
         let form = {

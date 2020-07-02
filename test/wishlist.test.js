@@ -60,7 +60,10 @@ beforeAll((done) => {
 afterAll((done) => {
     queryInterface.bulkDelete('Parents', null, {})
     .then( () => {
-        queryInterface.bulkDelete('NannyWishlists', null, {})
+        return queryInterface.bulkDelete('NannyWishlists', null, {})
+    })
+    .then( () => {
+        return queryInterface.bulkDelete('Nannies', null, {})
     })
     .then( () => {
         done()
